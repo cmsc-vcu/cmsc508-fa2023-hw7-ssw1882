@@ -267,19 +267,13 @@ df
 #| eval: true
 sql = f"""
 SELECT
-    people_last_name,
-    name,
-    tag
+    c.name
 from
     peopleskills a
     inner join people b on (a.people_id=b.people_id)
     inner join skills c on (a.skills_id=c.id)
 WHERE
-    people_last_name = 'Person 1'
-ORDER BY
-    name,
-    people_last_name
-;
+    b.last_name = 'Person 1';
 """
 ## list data
 try:
@@ -412,7 +406,17 @@ df
 #| echo: false
 #| eval: true
 sql = f"""
-
+SELECT
+    first_name,
+    last_name,
+    d.name
+FROM
+    people a
+    inner join peopleskills b on (a.people_id = b.people_id)
+    inner join peopleroles c on (a.people_id = c.people_id)
+    inner join skills d on (b.skills_id = d.id)
+WHERE
+    c.role_id = 5;
 """
 ## list data
 try:

@@ -368,6 +368,19 @@ WHERE
 ORDER BY
     name;
 
+/* List names and skills of those with the boss role */
+SELECT
+    first_name,
+    last_name,
+    d.name
+FROM
+    people a
+    inner join peopleskills b on (a.people_id = b.people_id)
+    inner join peopleroles c on (a.people_id = c.people_id)
+    inner join skills d on (b.skills_id = d.id)
+WHERE
+    c.role_id = 5;
+
 select * from people;
 select * from skills;
 select * from roles;
